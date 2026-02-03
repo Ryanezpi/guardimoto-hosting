@@ -152,9 +152,16 @@ function Home() {
           </div>
 
           <p style={{ marginTop: 12 }}>
-            Or open:{" "}
-            <a style={styles.link} href="/download">
-              GuardiMoto
+            Friendly tip:{" "}
+            <a
+              style={styles.link}
+              href={APK_PATH}
+              onClick={(event) => {
+                event.preventDefault();
+                window.location.href = APK_PATH;
+              }}
+            >
+              click here to download automatically
             </a>
           </p>
 
@@ -171,67 +178,10 @@ function Home() {
   );
 }
 
-function Download() {
-  const [status, setStatus] = useState<"downloading" | "downloaded">("downloading");
-
-  useEffect(() => {
-    window.location.href = APK_PATH;
-
-    const timer = window.setTimeout(() => setStatus("downloaded"), 2200);
-    // setTimeout(() => navigate("/"), 2500);
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  return (
-    <div style={styles.page}>
-      <div style={styles.shell}>
-        <div style={styles.headerBar}>
-          <div style={styles.brandRow}>
-            <img src="/assets/main-logo.png" alt="GuardiMoto logo" style={styles.logo} />
-            <div style={styles.title}>GuardiMoto</div>
-          </div>
-        </div>
-        <div style={styles.sectionSpacer} />
-
-        <div style={styles.card}>
-          <div style={styles.cardTitle}>
-            {status === "downloading" ? "Downloading…" : "Downloaded"}
-          </div>
-          <p style={styles.muted}>
-            If your download didn’t start or failed, tap the button below.
-          </p>
-
-          <div style={styles.sectionSpacer} />
-
-          <a
-            href={APK_PATH}
-            style={styles.buttonPrimary}
-            onClick={(event) => {
-              event.preventDefault();
-              window.location.href = APK_PATH;
-            }}
-          >
-            Download
-          </a>
-
-          <div style={styles.sectionSpacer} />
-
-          <ol style={{ ...styles.muted, listStylePosition: "inside", textAlign: "center" }}>
-            <li>Open the downloaded APK</li>
-            <li>If blocked: Settings → Security → Install unknown apps → allow your browser</li>
-            <li>Install</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/download" element={<Download />} />
     </Routes>
   );
 }
