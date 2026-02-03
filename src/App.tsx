@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useState } from "react";
 
-const APK_PATH = "/thesis-app.apk";
+const APK_PATH =
+  "https://storage.googleapis.com/guard-imoto-project.firebasestorage.app/app/guardimoto-app.apk";
 
 const styles = {
   page: {
@@ -115,7 +116,7 @@ const styles = {
 };
 
 function Home() {
-  const downloadUrl = `${window.location.origin}/download`;
+  const downloadUrl = APK_PATH;
   const [qrSize, setQrSize] = useState(220);
 
   useEffect(() => {
@@ -171,12 +172,7 @@ function Download() {
   const [status, setStatus] = useState<"downloading" | "downloaded">("downloading");
 
   useEffect(() => {
-    const a = document.createElement("a");
-    a.href = APK_PATH;
-    a.setAttribute("download", "thesis-app.apk");
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    window.location.href = APK_PATH;
 
     const timer = window.setTimeout(() => setStatus("downloaded"), 2200);
     // setTimeout(() => navigate("/"), 2500);
@@ -204,7 +200,7 @@ function Download() {
 
           <div style={styles.sectionSpacer} />
 
-          <a href={APK_PATH} download="thesis-app.apk" style={styles.buttonPrimary}>
+          <a href={APK_PATH} style={styles.buttonPrimary} target="_blank" rel="noreferrer">
             Download
           </a>
 

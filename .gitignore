@@ -12,6 +12,9 @@ node_modules/
 # Build output
 /dist
 
+# APK (stored in Firebase Storage)
+/public/thesis-app.apk
+
 # Local env files
 .env
 .env.*
