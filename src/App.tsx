@@ -3,7 +3,10 @@ import { QRCodeCanvas } from "qrcode.react";
 import { useEffect, useState } from "react";
 
 const APK_PATH =
-  "https://storage.googleapis.com/guard-imoto-project.firebasestorage.app/app/guardimoto-app.apk";
+  "https://storage.googleapis.com/guard-imoto-project.firebasestorage.app/app/guardimoto-app.apk" +
+  "?response-content-disposition=attachment%3B%20filename%3Dguardimoto-app.apk" +
+  "&response-content-type=application%2Fvnd.android.package-archive" +
+  "&v=20260203";
 
 const styles = {
   page: {
