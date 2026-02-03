@@ -203,7 +203,14 @@ function Download() {
 
           <div style={styles.sectionSpacer} />
 
-          <a href={APK_PATH} style={styles.buttonPrimary} target="_blank" rel="noreferrer">
+          <a
+            href={APK_PATH}
+            style={styles.buttonPrimary}
+            onClick={(event) => {
+              event.preventDefault();
+              window.location.href = APK_PATH;
+            }}
+          >
             Download
           </a>
 
