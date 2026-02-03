@@ -12,10 +12,14 @@ fi
 # Upload and make publicly readable
 # Requires: gsutil and gcloud auth
 
-gsutil -m cp -a public-read "$APK_LOCAL" "$APK_REMOTE"
+gsutil -o "GSUtil:parallel_process_count=1" -m cp -a public-read "$APK_LOCAL" "$APK_REMOTE"
 
-# Set cache headers (adjust if you want shorter caching)
-gsutil setmeta -h "Cache-Control:public, max-age=3600" "$APK_REMOTE"
+# Ensure correct file handling in browsers
+gsutil setmeta \
+  -h "Content-Type:application/vnd.android.package-archive" \
+  -h "Content-Disposition:attachment; filename=guardimoto-app.apk" \
+  -h "Cache-Control:public, max-age=3600" \
+  "$APK_REMOTE"
 
 echo "Uploaded to: $APK_REMOTE"
 echo "Public URL: https://storage.googleapis.com/guard-imoto-project.firebasestorage.app/app/guardimoto-app.apk"
