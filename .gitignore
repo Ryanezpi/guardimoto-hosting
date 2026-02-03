@@ -14,6 +14,7 @@ node_modules/
 
 # APK (stored in Firebase Storage)
 /public/thesis-app.apk
+/public/*.apk
 
 # Local env files
 .env
